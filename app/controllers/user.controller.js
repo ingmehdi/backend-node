@@ -4,12 +4,13 @@ const User = require('../models/user.model.js');
 exports.create = (req, res) => {
     // Validate request
     // Create a User
-    const user = new User({
-        name: req.body.name || "Untitled User", 
-        surname: req.body.surname,
+     user = new User({
+        name: req.body.name , 
+        login: req.body.login,
+        email:req.body.email,
+        password:req.body.password,
         role:req.body.role,
-    });
-
+    })
     // Save User in the database
     user.save()
     .then(data => {
@@ -66,8 +67,10 @@ exports.update = (req, res) => {
 
     // Find user and update it with the request body
     User.findByIdAndUpdate(req.params.usersId, {
-        user: req.body.user || "Untitled User",
-        surname: req.body.surname,
+        name: req.body.name , 
+        login: req.body.login,
+        email:req.body.email,
+        password:req.body.password,
         role:req.body.role,
     }, {new: true})
     .then(user => {
